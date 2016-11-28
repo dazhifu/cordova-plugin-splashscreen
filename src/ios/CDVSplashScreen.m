@@ -51,7 +51,13 @@
 
     // if value is missing, default to yes
     if ((autoHideSplashScreenValue == nil) || [autoHideSplashScreenValue boolValue]) {
-        [self setVisible:NO];
+        double delayInSeconds = 0.5;
+         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                 //执行事件
+            [self setVisible:NO];
+             });
+        
     }
 }
 
